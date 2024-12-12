@@ -19,7 +19,7 @@ const kmsKeyAlias: string = "alias/bug/32368"; //in Web Console it'll show as bu
 if (kms.Key.isLookupDummy(kms.Key.fromLookup(stack, "pre-existing-kms-key", { aliasName: kmsKeyAlias, returnDummyKeyOnMissing: true }))){
   console.log("detected kms isn't pre-existing, will create it.");
   // eksBlueprint.resourceProvider(blueprints.GlobalResources.KmsKey, new blueprints.CreateKmsKeyProvider(
-  // kmsKeyAlias, {description: "Easy EKS generated kms key, used to encrypt etcd and ebs-csi-driver provisioned volumes"}));
+  // kmsKeyAlias, {description: "cdk generated kms key, used to encrypt etcd and ebs-csi-driver provisioned volumes"}));
 }
 else { 
   console.log("detected pre-existing kms, will reuse it.");
