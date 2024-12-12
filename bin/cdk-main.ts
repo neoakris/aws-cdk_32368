@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as kms from 'aws-cdk-lib/aws-kms';
+//import * as blueprints from '@aws-quickstart/eks-blueprints'; 
 
 const app = new cdk.App();
 
@@ -12,15 +13,15 @@ const stack_config: cdk.StackProps = {
   }
 }
 
-const stack = new cdk.Stack(app, "cdk-bug-32368", stack_config);
+const stack = new cdk.Stack(app, "bug-32368", stack_config);
 const kmsKeyAlias: string = "alias/bug/32368"; //in Web Console it'll show as bug/32368
 
 if (kms.Key.isLookupDummy(kms.Key.fromLookup(stack, "pre-existing-kms-key", { aliasName: kmsKeyAlias, returnDummyKeyOnMissing: true }))){
-  console.log("detected kms isn't pre-existing, will create it.")
+  console.log("detected kms isn't pre-existing, will create it.");
   // eksBlueprint.resourceProvider(blueprints.GlobalResources.KmsKey, new blueprints.CreateKmsKeyProvider(
   // kmsKeyAlias, {description: "Easy EKS generated kms key, used to encrypt etcd and ebs-csi-driver provisioned volumes"}));
 }
 else { 
-  console.log("detected pre-existing kms, will reuse it.")
+  console.log("detected pre-existing kms, will reuse it.");
   // eksBlueprint.resourceProvider(blueprints.GlobalResources.KmsKey, new blueprints.LookupKmsKeyProvider(this.config.kmsKeyAlias)); 
 }
